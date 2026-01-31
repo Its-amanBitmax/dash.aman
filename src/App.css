@@ -1,0 +1,35 @@
+:root {
+  /* Primary – Navy Blue */
+  --primary: #0b3c5d;
+  /* Deep Navy */
+  --secondary: #1e293b;
+  /* Dark Slate Navy */
+  --background: #f5f7fa;
+  /* Light Blue-Gray */
+  --border: #d1d5db;
+  --danger: #dc2626;
+  /* Table Header Gradient */
+  --table-header-from: #0b3c5d;
+  /* start color */
+  --table-header-to: #06283d;
+  /* end color */
+  --table-header-text: #ffffff;
+}
+
+.dark {
+  /* Dark Mode Navy Theme */
+  --primary: #3b82f6;
+  /* Soft Blue */
+  --secondary: #020617;
+  /* Almost Black Navy */
+  --background: #020617;
+  /* Deep Navy Background */
+  --border: #1e293b;
+  --danger: #ef4444;
+  /* Table Header Gradient */
+  --table-header-from: #1e40af;
+  /* start color */
+  --table-header-to: #1e3a8a;
+  /* end color */
+  --table-header-text: #ffffff;
+}

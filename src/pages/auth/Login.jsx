@@ -8,8 +8,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   // UPDATED static credentials
-  const ADMIN_EMAIL = "aman@gmail.com";
-  const ADMIN_PASSWORD = "Aman123";
+  const ADMIN_EMAIL = "amlorix";
+  const ADMIN_PASSWORD = "7065aman";
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -37,7 +37,6 @@ const Login = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="aman@gmail.com"
               className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#0b3c5d]"
               required
             />

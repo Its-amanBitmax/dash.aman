@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../api";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import ReactMarkdown from "react-markdown";
 
 const BlogCreate = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const BlogCreate = () => {
     description: "",
     category: "",
     tags: "",
+    link: "",
   };
 
   const [formData, setFormData] = useState(initialForm);
@@ -86,25 +88,20 @@ const BlogCreate = () => {
   if (loading) return <div className="p-6">Loading...</div>;
 
   return (
-    <div className="p-12 min-h-screen bg-[#f5f7fa]">
-      {/* ================= HEADER ================= */}
-      <h1 className="text-2xl font-semibold text-[#0b3c5d] mb-6">
-        Blog Management
-      </h1>
+    <div className="p-6 bg-[#f5f7fa] min-h-screen">
+      {/* ===== HEADER ===== */}
+      <div className="mb-6">
+        <h1 className="text-2xl font-semibold text-[#0b3c5d]">
+          Blog Management
+        </h1>
+        <p className="text-sm text-gray-500">Create and manage your blogs</p>
+      </div>
 
-      {/* ================= CREATE FORM ================= */}
-      <div className="bg-white p-6 rounded shadow mb-8">
-        <h2 className="text-lg font-semibold mb-4">Create Blog</h2>
+      {/* ===== CREATE FORM ===== */}
+      <div className="bg-white p-6 rounded shadow mb-6">
+        <h2 className="font-semibold mb-4">Create Blog</h2>
 
         <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-4">
-          <input
-            type="file"
-            name="image"
-            onChange={handleChange}
-            accept="image/*"
-            className="border p-2 rounded"
-          />
-
           <input
             name="subject"
             value={formData.subject}
@@ -113,6 +110,17 @@ const BlogCreate = () => {
             required
             className="border p-2 rounded"
           />
+
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium mb-2">Blog Image</label>
+            <input
+              type="file"
+              name="image"
+              onChange={handleChange}
+              accept="image/*"
+              className="border p-2 rounded w-full"
+            />
+          </div>
 
           <input
             name="category"
@@ -144,9 +152,9 @@ const BlogCreate = () => {
 
           <button
             disabled={submitting}
-            className="md:col-span-2 bg-[#0b3c5d] text-white py-2 rounded hover:bg-[#06283d]"
+            className="md:col-span-2 bg-[#0b3c5d] text-white py-2 rounded"
           >
-            {submitting ? "Saving..." : "Create Blog"}
+            {submitting ? "Creating..." : "Create Blog"}
           </button>
         </form>
       </div>
@@ -166,6 +174,7 @@ const BlogCreate = () => {
                 <tr>
                   <th className="p-3 text-left">Image</th>
                   <th className="p-3 text-left">Subject</th>
+                  <th className="p-3 text-left">Description</th>
                   <th className="p-3 text-left">Category</th>
                   <th className="p-3 text-left">Tags</th>
                   <th className="p-3 text-left">Created</th>
@@ -185,6 +194,14 @@ const BlogCreate = () => {
                     </td>
 
                     <td className="p-3 font-medium">{item.subject}</td>
+
+                    <td className="p-3 max-w-xs">
+                      <div className="prose prose-sm max-w-none text-gray-700">
+                        <ReactMarkdown>
+                          {item.description}
+                        </ReactMarkdown>
+                      </div>
+                    </td>
 
                     <td className="p-3">{item.category}</td>
 

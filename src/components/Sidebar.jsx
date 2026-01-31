@@ -154,7 +154,7 @@ export default function Sidebar() {
       </div> */}
 
       {/* Custom CSS for hidden scrollbar */}
-      <style jsx>{`
+      <style>{`
         .scrollbar-hidden {
           scrollbar-width: none;
           -ms-overflow-style: none;

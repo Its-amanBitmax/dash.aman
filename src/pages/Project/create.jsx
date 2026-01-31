@@ -10,10 +10,12 @@ function Create() {
 
   const [form, setForm] = useState({
     title: "",
-    image: "",
-    // link: "",
+    image: null,
+    link: "",
     techstack: "",
   });
+
+  const [imagePreview, setImagePreview] = useState(null);
 
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -39,7 +41,19 @@ function Create() {
 
   /* ================= FORM ================= */
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    if (e.target.name === "image") {
+      const file = e.target.files[0];
+      setForm({ ...form, image: file });
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => setImagePreview(reader.result);
+        reader.readAsDataURL(file);
+      } else {
+        setImagePreview(null);
+      }
+    } else {
+      setForm({ ...form, [e.target.name]: e.target.value });
+    }
   };
 
   /* ================= CREATE ================= */
@@ -47,16 +61,24 @@ function Create() {
     e.preventDefault();
     setSubmitting(true);
 
-    const payload = {
-      title: form.title,
-      image: form.image,
-      link: form.link,
-      techstack: form.techstack.split(",").map((i) => i.trim()),
-    };
-
     try {
-      await axios.post(CREATE_API, payload);
-      setForm({ title: "", image: "", link: "", techstack: "" });
+      const formData = new FormData();
+      formData.append("title", form.title);
+      formData.append("link", form.link);
+      formData.append("techstack", form.techstack);
+      if (form.image) {
+        formData.append("image", form.image);
+      }
+
+      // Send all data including image file to backend
+      await axios.post(CREATE_API, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      setForm({ title: "", image: null, link: "", techstack: "" });
+      setImagePreview(null);
       fetchProjects();
     } catch (error) {
       console.error(error);
@@ -90,23 +112,35 @@ function Create() {
             required
           />
 
-          <input
-            name="image"
-            placeholder="Image URL"
-            value={form.image}
-            onChange={handleChange}
-            className="border p-2 rounded"
-            required
-          />
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium mb-2">Project Image</label>
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleChange}
+              className="border p-2 rounded w-full"
+              required
+            />
+            {imagePreview && (
+              <div className="mt-2">
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  className="w-32 h-32 object-cover rounded border"
+                />
+              </div>
+            )}
+          </div>
 
-          {/* <input
+          <input
             name="link"
             placeholder="Project Link"
             value={form.link}
             onChange={handleChange}
             className="border p-2 rounded"
             required
-          /> */}
+          />
 
           <input
             name="techstack"

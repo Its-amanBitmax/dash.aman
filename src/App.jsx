@@ -20,7 +20,7 @@ import ContactInfoCreate from "./pages/Contacts/ContactInfo-create";
 import ContactInfoEdit from "./pages/Contacts/ContactInfo-edit";
 import BannerPage from "./pages/Banner/Banner";
 import CreateBanner from "./pages/Banner/create";
-import EditBanner from "./pages/Banner/edit";
+import EditBanner from "./pages/Banner/Edit";
 import Project from "./pages/Project/Project.jsx";
 import CreateProject from "./pages/Project/create.jsx";
 import EditProject from "./pages/Project/edit.jsx";

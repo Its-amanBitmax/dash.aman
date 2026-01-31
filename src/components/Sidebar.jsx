@@ -21,7 +21,7 @@ const menuItems = [
   { to: "/comments", label: "Comments", icon: ChatBubbleLeftRightIcon },
   { to: "/contact", label: "Contact", icon: PhoneIcon },
   { to: "/blogs", label: "Blogs", icon: DocumentTextIcon },
-  { to: "/banner", label: "Banner", icon: FolderIcon },
+  { to: "/banner/create", label: "Banner", icon: FolderIcon },
   { to: "/project", label: "Projects", icon: FolderIcon },
   { to: "/testimonial", label: "Testimonials", icon: ChatBubbleLeftRightIcon },
   { to: "/skills", label: "Skills", icon: AcademicCapIcon },

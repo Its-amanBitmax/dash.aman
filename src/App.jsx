@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
 import About from "./pages/About/About";
 import Create from "./pages/About/Create";
 import Edit from "./pages/About/Edit";
@@ -40,57 +41,59 @@ function App() {
         <Route
           path="/*"
           element={
-            <>
-              <Navbar />
-              <div className="flex">
-                <Sidebar />
-                <main className="ml-64 flex-1 mt-4">
-                  <Routes>
-                    <Route path="about" element={<About />} />
-                    <Route path="create" element={<Create />} />
-                    <Route path="edit/:id" element={<Edit />} />
-                    <Route path="services" element={<Service />} />
-                    <Route path="services/create" element={<CreateService />} />
-                    <Route path="services/edit/:id" element={<EditService />} />
-                    <Route path="comments" element={<Comments />} />
-                    <Route path="contact" element={<Contact />} />
-                    <Route path="contact/create" element={<ContactCreate />} />
-                    <Route path="blogs" element={<Blogs />} />
-                    <Route path="blogs/list" element={<BlogList />} />
-                    <Route path="blogs/create" element={<BlogCreate />} />
-                    <Route path="blogs/edit/:id" element={<BlogEdit />} />
-                    <Route path="contactinfo" element={<ContactInfo />} />
-                    <Route
-                      path="contactinfo/list"
-                      element={<ContactInfoList />}
-                    />
-                    <Route
-                      path="contactinfo/create"
-                      element={<ContactInfoCreate />}
-                    />
-                    <Route
-                      path="contactinfo/edit/:id"
-                      element={<ContactInfoEdit />}
-                    />
-                    <Route path="banner" element={<BannerPage />} />
-                    <Route path="banner/create" element={<CreateBanner />} />
-                    <Route path="banner/edit/:id" element={<EditBanner />} />
-                    <Route path="project" element={<Project />} />
-                    <Route path="project/create" element={<CreateProject />} />
-                    <Route path="project/edit/:id" element={<EditProject />} />
-                    <Route path="testimonial" element={<Testimonial />} />
-                    <Route
-                      path="testimonial/manage"
-                      element={<Testimonialcard />}
-                    />
-                    <Route path="skills" element={<Skills />} />
-                    <Route path="skills/create" element={<CreateSkill />} />
-                    <Route path="skills/edit/:id" element={<EditSkill />} />
-                    <Route path="stats" element={<Stats />} />
-                  </Routes>
-                </main>
-              </div>
-            </>
+            <ProtectedRoute>
+              <>
+                <Navbar />
+                <div className="flex">
+                  <Sidebar />
+                <main className="ml-72 flex-1 mt-4">
+                    <Routes>
+                      <Route path="about" element={<About />} />
+                      <Route path="create" element={<Create />} />
+                      <Route path="edit/:id" element={<Edit />} />
+                      <Route path="services" element={<Service />} />
+                      <Route path="services/create" element={<CreateService />} />
+                      <Route path="services/edit/:id" element={<EditService />} />
+                      <Route path="comments" element={<Comments />} />
+                      <Route path="contact" element={<Contact />} />
+                      <Route path="contact/create" element={<ContactCreate />} />
+                      <Route path="blogs" element={<Blogs />} />
+                      <Route path="blogs/list" element={<BlogList />} />
+                      <Route path="blogs/create" element={<BlogCreate />} />
+                      <Route path="blogs/edit/:id" element={<BlogEdit />} />
+                      <Route path="contactinfo" element={<ContactInfo />} />
+                      <Route
+                        path="contactinfo/list"
+                        element={<ContactInfoList />}
+                      />
+                      <Route
+                        path="contactinfo/create"
+                        element={<ContactInfoCreate />}
+                      />
+                      <Route
+                        path="contactinfo/edit/:id"
+                        element={<ContactInfoEdit />}
+                      />
+                      <Route path="banner" element={<BannerPage />} />
+                      <Route path="banner/create" element={<CreateBanner />} />
+                      <Route path="banner/edit/:id" element={<EditBanner />} />
+                      <Route path="project" element={<Project />} />
+                      <Route path="project/create" element={<CreateProject />} />
+                      <Route path="project/edit/:id" element={<EditProject />} />
+                      <Route path="testimonial" element={<Testimonial />} />
+                      <Route
+                        path="testimonial/manage"
+                        element={<Testimonialcard />}
+                      />
+                      <Route path="skills" element={<Skills />} />
+                      <Route path="skills/create" element={<CreateSkill />} />
+                      <Route path="skills/edit/:id" element={<EditSkill />} />
+                      <Route path="stats" element={<Stats />} />
+                    </Routes>
+                  </main>
+                </div>
+              </>
+            </ProtectedRoute>
           }
         />
       </Routes>
